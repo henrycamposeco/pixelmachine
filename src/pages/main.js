@@ -7,22 +7,23 @@ import {
     MainContainer,
     RightSidebar,
     GlobalStyle,
-} from '../components/styled/mainContentLayout';
- import  {LeftSidebarComponent, RightSideBarComponent , HeaderComponent} from '../components';
+} from '../components/style/mainContentLayout';
+import {LeftSidebarComponent, RightSideBarComponent, HeaderComponent} from '../components';
+import FooterComponent from "../components/Footer";
 
 const Main = () => (
     <React.Fragment>
         <GlobalStyle/>
         <StyledContainer>
-            <Header><HeaderComponent /></Header>
+            <Header><HeaderComponent/></Header>
             <LeftSidebar>
-                <LeftSidebarComponent />
+                <LeftSidebarComponent/>
             </LeftSidebar>
             <MainContainer>Main content</MainContainer>
             <RightSidebar>
-                <RightSideBarComponent />
+                <RightSideBarComponent/>
             </RightSidebar>
-            <Footer>Footer Content — Header.com 2020</Footer>
+            <Footer><FooterComponent/></Footer>
         </StyledContainer>
     </React.Fragment>
 );

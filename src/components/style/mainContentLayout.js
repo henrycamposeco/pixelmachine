@@ -23,6 +23,7 @@ export const LeftSidebar = styled.div`
     background: ${colors.leftBar};
     grid-column: 1 / 2;
     padding: 1rem;
+    overflow-y: scroll;
 `;
 
 export const MainContainer = styled.main`
@@ -34,6 +35,8 @@ export const RightSidebar = styled.div`
     background: ${colors.rightBar};
     grid-column: 3 / 4;
     padding: 1rem;
+    min-width: 19rem;
+    overflow-y: scroll;
 `;
 
 export const Footer = styled.footer`

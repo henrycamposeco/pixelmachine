@@ -1,10 +1,10 @@
 import React from 'react';
 import {List, ListItem, Button} from '@material-ui/core';
-import {Send, AddBox} from '@material-ui/icons';
+import {ImageSearch, AddBox} from '@material-ui/icons';
 
 
 const LeftSideBarComponent = () => {
-        const [open, setOpen] = React.useState('TEST');
+        const [open, setOpen] = React.useState('0');
 
         const handleClick = (value) => {
             setOpen(value);
@@ -14,10 +14,7 @@ const LeftSideBarComponent = () => {
             <>
                 <List component="nav" aria-label="contacts">
                     <ListItem>
-                        <Button variant="contained" startIcon={<Send />} color="primary" onClick={() => { handleClick('Change!')}}>Test</Button>
-                    </ListItem>
-                    <ListItem>
-                        <Button variant="contained" startIcon={<AddBox />} color="primary" onClick={() => { handleClick('Change2!')}}>Default</Button>
+                        <Button variant="contained" startIcon={<ImageSearch />} color="primary" onClick={() => { handleClick('Change!')}}>import</Button>
                     </ListItem>
                     <ListItem>
                         -{open}-
