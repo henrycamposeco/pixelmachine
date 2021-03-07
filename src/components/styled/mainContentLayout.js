@@ -1,11 +1,9 @@
 import styled, { createGlobalStyle } from 'styled-components'
 import colors from './interfaceColor';
 
-
 export const GlobalStyle = createGlobalStyle`
     body {
         background: ${colors.body},
-        
     }
 `;
 
@@ -17,12 +15,12 @@ export const StyledContainer = styled.div`
 
 export const Header = styled.header`
     background: ${colors.header};
-    padding: 2rem;
+    padding: 1rem;
     grid-column: 1 / 4;
 `;
 
 export const LeftSidebar = styled.div`
-    background: ${colors.bars};
+    background: ${colors.leftBar};
     grid-column: 1 / 2;
     padding: 1rem;
 `;
@@ -33,7 +31,7 @@ export const MainContainer = styled.main`
 `;
 
 export const RightSidebar = styled.div`
-    background: ${colors.bars};
+    background: ${colors.rightBar};
     grid-column: 3 / 4;
     padding: 1rem;
 `;

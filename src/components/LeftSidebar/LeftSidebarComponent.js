@@ -1,5 +1,5 @@
 import React from 'react';
-import {List, ListItem, Button, ListItemText, makeStyles} from '@material-ui/core';
+import {List, ListItem, Button} from '@material-ui/core';
 import {Send, AddBox} from '@material-ui/icons';
 
 
@@ -14,10 +14,10 @@ const LeftSideBarComponent = () => {
             <>
                 <List component="nav" aria-label="contacts">
                     <ListItem>
-                        <Button variant="contained" startIcon={<Send />} onClick={() => { handleClick('Change!')}}>Test</Button>
+                        <Button variant="contained" startIcon={<Send />} color="primary" onClick={() => { handleClick('Change!')}}>Test</Button>
                     </ListItem>
                     <ListItem>
-                        <Button variant="contained" startIcon={<AddBox />} onClick={() => { handleClick('Change2!')}}>Default</Button>
+                        <Button variant="contained" startIcon={<AddBox />} color="primary" onClick={() => { handleClick('Change2!')}}>Default</Button>
                     </ListItem>
                     <ListItem>
                         -{open}-

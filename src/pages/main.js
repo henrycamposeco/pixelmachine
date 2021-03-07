@@ -1,5 +1,4 @@
 import React from "react";
-
 import {
     StyledContainer,
     Header,
@@ -8,16 +7,21 @@ import {
     MainContainer,
     RightSidebar,
     GlobalStyle,
-} from '../components/styled/styledHolyGrailLayout';
- import  LeftSideBarComponent from '../components/LeftSidebar';
+} from '../components/styled/mainContentLayout';
+ import  {LeftSidebarComponent, RightSideBarComponent , HeaderComponent} from '../components';
+
 const Main = () => (
     <React.Fragment>
         <GlobalStyle/>
         <StyledContainer>
-            <Header></Header>
-            <LeftSidebar><LeftSideBarComponent /></LeftSidebar>
+            <Header><HeaderComponent /></Header>
+            <LeftSidebar>
+                <LeftSidebarComponent />
+            </LeftSidebar>
             <MainContainer>Main content</MainContainer>
-            <RightSidebar>Right Sidebar</RightSidebar>
+            <RightSidebar>
+                <RightSideBarComponent />
+            </RightSidebar>
             <Footer>Footer Content — Header.com 2020</Footer>
         </StyledContainer>
     </React.Fragment>

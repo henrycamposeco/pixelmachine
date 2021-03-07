@@ -1,10 +1,11 @@
 const colors = {
-    header: '#686868',
+    header: '#737373',
     body: '#464646',
-    bars: '#727272',
-    main: '#393939',
-    footer: '#686868',
-    buttons: '#919191'
+    leftBar: '#383838',
+    rightBar: '#737373',
+    main: '#3d3d3d',
+    footer: '#383838',
+    buttons: '#444444'
 };
 
 export default colors;
