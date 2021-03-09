@@ -17,7 +17,7 @@ const theme = createMuiTheme({
         },
     },
     typography: {
-        fontFamily: 'Jura',
+        fontFamily: 'DotGothic16',
     },
 });
 

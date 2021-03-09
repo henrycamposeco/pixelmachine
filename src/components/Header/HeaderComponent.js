@@ -14,7 +14,7 @@ const HeaderComponent = () => {
                     </Grid>
                     <Grid item xs={3}>
                         <Typography variant="h4">
-                            Pixel Builder
+                            Pixel Dungeon
                         </Typography>
                     </Grid>
                 </Grid>

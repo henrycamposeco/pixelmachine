@@ -1,21 +1,14 @@
 import React from "react";
 import {Button, ButtonGroup, ListItem} from "@material-ui/core";
 import {Camera, Delete, SettingsApplications, Videocam} from "@material-ui/icons";
+import { defaultControllerValues } from '../../store/contextProvider';
 
-export const defaultControllerValues = () => ({
-    fps: 5,
-    pixelSize: 100,
-    chromaKey: 0,
-    feather: 30,
-    bitDepth: 30,
-});
-
-export const buttonsFragment = (localState) => {
+export const buttonsFragment = (context) => {
     const handleRender = (value) => {
     };
 
     const handleDefaults = () => {
-        localState.setControllers(defaultControllerValues());
+        context.setController(defaultControllerValues);
     };
 
     return (

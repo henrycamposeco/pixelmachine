@@ -1,15 +1,16 @@
 import React from "react";
 import {Box, Button, ButtonGroup, ListItem, Slider, Typography} from "@material-ui/core";
-import {Delete, SettingsApplications} from "@material-ui/icons";
-import {defaultControllerValues} from "./buttonsFragment";
+import {SettingsApplications} from "@material-ui/icons";
+import { defaultControllerValues } from '../../store/contextProvider';
 
-const controllersFragment = (localState) => {
+
+const controllersFragment = (context) => {
     const handleChange = name => (event, newValue) => {
-        localState.setControllers({...localState.controllers, [name]: newValue});
+        context.setController({...context.controller, [name]: newValue});
     };
 
     const handleDefaults = () => {
-        localState.setControllers(defaultControllerValues());
+        context.setController(defaultControllerValues());
     };
 
     return (
@@ -24,28 +25,11 @@ const controllersFragment = (localState) => {
             <ListItem>
                 <Box width="200px">
                     <Typography variant="caption" gutterBottom>
-                        FPS
-                    </Typography>
-                    <Slider
-                        id="fps"
-                        value={localState.controllers.fps}
-                        valueLabelDisplay="auto"
-                        step={1}
-                        marks={[{value: 0, label: "0"}, {value: 5, label: "5 fps"}, {value: 24, label: "24"}]}
-                        min={1}
-                        max={24}
-                        onChange={handleChange("fps")}
-                    />
-                </Box>
-            </ListItem>
-            <ListItem>
-                <Box width="200px">
-                    <Typography variant="caption" gutterBottom>
                         Pixel Size
                     </Typography>
                     <Slider
                         id="pixelSize"
-                        value={localState.controllers.pixelSize}
+                        value={context.controller.pixelSize}
                         valueLabelDisplay="auto"
                         step={1}
                         marks={[{value: 10, label: "10"}, {value: 100, label: "100"}]}
@@ -62,7 +46,7 @@ const controllersFragment = (localState) => {
                     </Typography>
                     <Slider
                         id="chromaKey"
-                        value={localState.controllers.chromaKey}
+                        value={context.controller.chromaKey}
                         valueLabelDisplay="auto"
                         step={0.01}
                         marks={[{value: 0, label: "0.0"}, {value: 0.5, label: "0.5"}, {value: 1, label: "1"}]}
@@ -79,7 +63,7 @@ const controllersFragment = (localState) => {
                     </Typography>
                     <Slider
                         id="feather"
-                        value={localState.controllers.feather}
+                        value={context.controller.feather}
                         valueLabelDisplay="auto"
                         step={1}
                         marks={[{value: 1, label: "1"}, {value: 30, label: "30"}, {value: 110, label: "100"}]}
@@ -96,7 +80,7 @@ const controllersFragment = (localState) => {
                     </Typography>
                     <Slider
                         id="bitDepth"
-                        value={localState.controllers.bitDepth}
+                        value={context.controller.bitDepth}
                         valueLabelDisplay="auto"
                         step={1}
                         marks={[{value: 1, label: "1"}, {value: 30, label: "30"}, {value: 110, label: "100"}]}
