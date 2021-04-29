@@ -1,14 +1,14 @@
 import React from 'react';
-import {List, ListItem, Button, Box, Typography, Slider, Link} from '@material-ui/core';
+import {List, ListItem, Button, Box, Typography, Slider, Link, CircularProgress} from '@material-ui/core';
 import {ImageSearch} from '@material-ui/icons';
 import {MainContext} from "../../store/contextProvider";
+import uploadMedia from "../../services/uploadMedia";
 
 const LeftSideBarComponent = () => {
-        const [open, setOpen] = React.useState('0');
         const context = React.useContext(MainContext);
 
-        const handleClick = (value) => {
-            setOpen(value);
+        const handleUploadVideo = (value) => {
+            uploadMedia(value.target.files, context);
         };
 
         const handleChange = name => (event, newValue) => {
@@ -19,9 +19,27 @@ const LeftSideBarComponent = () => {
             <>
                 <List component="nav" aria-label="contacts">
                     <ListItem>
-                        <Button variant="contained" startIcon={<ImageSearch/>} color="primary" onClick={() => {
-                            handleClick('Change!')
-                        }}>import</Button>
+
+                        <label htmlFor="raised-button-file">
+                            <Button
+                                variant="contained"
+                                component="label"
+                                startIcon={<ImageSearch/>}
+                                color="primary"
+                                disabled={context.isLoading}
+                            >
+                                Upload File
+                                {context.isLoading && <CircularProgress size={24} color="secondary"/>}
+                                <input
+                                    accept="video/*,image/*"
+                                    className=""
+                                    style={{display: 'none'}}
+                                    id="imageLoader"
+                                    type="file"
+                                    onChange={(e) => handleUploadVideo(e)}
+                                />
+                            </Button>
+                        </label>
                     </ListItem>
                     <ListItem>
                         <Box width="200px">
@@ -42,10 +60,12 @@ const LeftSideBarComponent = () => {
                         </Box>
                     </ListItem>
                     <ListItem>
-                        <Link  color="secondary" href="https://www.youtube.com/watch?v=vwk5UA927Ok&ab_channel=Saultoons" target="_blank">12 Animation principles</Link>
+                        <Link color="secondary" href="https://www.youtube.com/watch?v=vwk5UA927Ok&ab_channel=Saultoons"
+                              target="_blank">12 Animation principles</Link>
                     </ListItem>
                     <ListItem>
-                        <Link  color="secondary" href="https://www.youtube.com/watch?v=Mw0h9WmBlsw&t=521s&ab_channel=GDC" target="_blank">Fluid Animation Video Link</Link>
+                        <Link color="secondary" href="https://www.youtube.com/watch?v=Mw0h9WmBlsw&t=521s&ab_channel=GDC"
+                              target="_blank">Fluid Animation Video Link</Link>
                     </ListItem>
                 </List>
             </>

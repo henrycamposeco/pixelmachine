@@ -1,7 +1,12 @@
 import React from 'react';
 import {StyledContainer} from "./Styled";
+import {MainContext} from "../../store/contextProvider";
 
 const FooterComponent = () => {
+    const context = React.useContext(MainContext);
+    const handleChange = (e, newValue) => {
+        context.setCurrentKeyFrame(newValue-1);
+    };
         return (
             <>
                 <StyledContainer
@@ -11,7 +16,8 @@ const FooterComponent = () => {
                     step={1}
                     marks
                     min={1}
-                    max={120}
+                    max={context?.mediaContent?.length || 0}
+                    onChange={handleChange}
                 />
             </>
         )

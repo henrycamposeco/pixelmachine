@@ -10,6 +10,11 @@ export const defaultControllerValues = () => ({
 
 export const MainContext = React.createContext({
     controller: defaultControllerValues,
-
+    keyframes: 0,
+    currentKeyFrame: 0,
+    mediaType: 'image',
+    mediaContent: null,
+    canvasObject: {},
+    isLoading: false,
 });
 

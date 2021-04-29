@@ -1,5 +1,6 @@
 import styled, { createGlobalStyle } from 'styled-components'
 import colors from './interfaceColor';
+import backgroundImg from '../../images/tiledBackground.png'
 
 export const GlobalStyle = createGlobalStyle`
     body {
@@ -23,12 +24,13 @@ export const LeftSidebar = styled.div`
     background: ${colors.leftBar};
     grid-column: 1 / 2;
     padding: 1rem;
-    overflow-y: scroll;
 `;
 
 export const MainContainer = styled.main`
     background: ${colors.main};
     grid-column: 2 / 3;
+    padding: 1rem;
+    background-image: url('${backgroundImg}');
 `;
 
 export const RightSidebar = styled.div`

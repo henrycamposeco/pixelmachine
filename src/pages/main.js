@@ -8,7 +8,7 @@ import {
     RightSidebar,
     GlobalStyle,
 } from '../components/style/mainContentLayout';
-import {LeftSidebarComponent, RightSideBarComponent, HeaderComponent} from '../components';
+import {LeftSidebarComponent, RightSideBarComponent, HeaderComponent, MainComponent} from '../components';
 import FooterComponent from "../components/Footer";
 
 const Main = () => (
@@ -19,7 +19,9 @@ const Main = () => (
             <LeftSidebar>
                 <LeftSidebarComponent/>
             </LeftSidebar>
-            <MainContainer>Main content</MainContainer>
+            <MainContainer>
+                <MainComponent />
+            </MainContainer>
             <RightSidebar>
                 <RightSideBarComponent/>
             </RightSidebar>
