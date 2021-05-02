@@ -1,9 +1,10 @@
 import React from "react";
-import {bitdepth, pixelate} from "./filters";
+import {chromakey, bitdepth, pixelate} from "./filters";
+import {loadAndPredict, mask} from "./bodyPix";
 
 let videoFrames = [];
 let savedImage = new Image();
-const maxSize = 400;
+const maxSize = 500;
 
 
 export const renderVideo = async (mediaContent, context) => {
@@ -29,8 +30,8 @@ const extractFramesFromVideo = async (mediaContent, context) => {
             canvasVideo.setAttribute('crossOrigin', 'anonymous');
             let ctxVideo = canvasVideo.getContext('2d');
             let ratio = video.videoWidth / video.videoHeight;
-            const w = 400;
-            const h = 400 / ratio;
+            const w = 500;
+            const h = 500 / ratio;
             canvasVideo.width = w;
             canvasVideo.height = h;
 
@@ -50,14 +51,18 @@ const extractFramesFromVideo = async (mediaContent, context) => {
         });
         video.src = videoObjectUrl;
     });
-}
+};
 
 function saveFrame(blob) {
     return videoFrames.push(blob);
 }
 
-export const renderCurrentFrame = async (ctx, canvas, context) => {
+export const renderCurrentFrame = async (ctx, canvas, context, original) => {
     let frame = await videoFrames[context.currentKeyFrame || 0];
+    if (!frame) {
+        reset(context);
+        return;
+    };
     let reader = new FileReader();
     reader.readAsDataURL(frame);
     reader.onloadend = function () {
@@ -70,7 +75,7 @@ export const renderCurrentFrame = async (ctx, canvas, context) => {
         img.src = source;
         savedImage.src = source;
 
-        img.onload = function () {
+        img.onload = async function () {
             let ratio;
             let hRatio = 1;
             let vRatio = 1;
@@ -84,10 +89,24 @@ export const renderCurrentFrame = async (ctx, canvas, context) => {
             ratio = Math.max(hRatio, vRatio);
             canvas.width = img.width / ratio;
             canvas.height = img.height / ratio;
-            // ctx.drawImage(img, 0, 0, img.width, img.height, 0, 0, canvas.width, canvas.height);
 
-            pixelate(ctx, canvas, context, img);
-            bitdepth(ctx, canvas, context);
+            if (original) {
+                ctx.drawImage(img, 0, 0, img.width, img.height, 0, 0, canvas.width, canvas.height);
+            } else {
+                const segmentation = await loadAndPredict(img);
+                await pixelate(ctx, canvas, context, img);
+                savedImage.src =  canvas.toDataURL();
+                await bitdepth(ctx, ctx.canvas, context);
+                mask(savedImage, canvas, segmentation);
+                await chromakey(ctx, canvas, context);
+                ctx.filter = 'saturate(140%)';
+            }
         };
     }
-}
+};
+
+export const reset = (context) => {
+    context.setKeyframes(0);
+    context.setCurrentKeyFrame(0);
+    context.setMediaContent();
+};

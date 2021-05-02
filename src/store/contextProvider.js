@@ -1,10 +1,10 @@
 import React from "react";
 
 export const defaultControllerValues = () => ({
-    fps: 5,
-    pixelSize: 100,
-    chromaKey: 0,
-    feather: 30,
+    fps: 1,
+    pixelSize: 25,
+    chromaKey: 0.2,
+    feather: 1,
     bitDepth: 30,
 });
 
