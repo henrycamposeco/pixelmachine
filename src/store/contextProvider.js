@@ -2,7 +2,7 @@ import React from "react";
 
 export const defaultControllerValues = () => ({
     fps: 1,
-    pixelSize: 25,
+    pixelSize: 5,
     chromaKey: 0.2,
     feather: 1,
     bitDepth: 30,

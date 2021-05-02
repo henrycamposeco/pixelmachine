@@ -1,5 +1,5 @@
 import React from "react";
-import {chromakey, bitdepth, pixelate} from "./filters";
+import {chromakey, bitdepth, pixelate, pixelate2} from "./filters";
 import {loadAndPredict, mask} from "./bodyPix";
 
 let videoFrames = [];
@@ -93,13 +93,10 @@ export const renderCurrentFrame = async (ctx, canvas, context, original) => {
             if (original) {
                 ctx.drawImage(img, 0, 0, img.width, img.height, 0, 0, canvas.width, canvas.height);
             } else {
-                const segmentation = await loadAndPredict(img);
-                await pixelate(ctx, canvas, context, img);
-                savedImage.src =  canvas.toDataURL();
-                await bitdepth(ctx, ctx.canvas, context);
-                mask(savedImage, canvas, segmentation);
+                await loadAndPredict(img, canvas);
+                await bitdepth(ctx, canvas, context);
                 await chromakey(ctx, canvas, context);
-                ctx.filter = 'saturate(140%)';
+                await pixelate2(ctx, canvas, context);
             }
         };
     }

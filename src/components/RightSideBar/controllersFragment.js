@@ -32,9 +32,9 @@ const controllersFragment = (context) => {
                         value={context.controller.pixelSize}
                         valueLabelDisplay="auto"
                         step={1}
-                        marks={[{value: 10, label: "10"}, {value: 100, label: "100"}]}
-                        min={10}
-                        max={100}
+                        marks={[{value: 5, label: "5"}, {value: 25, label: "25"}]}
+                        min={1}
+                        max={25}
                         onChange={handleChange("pixelSize")}
                     />
                 </Box>

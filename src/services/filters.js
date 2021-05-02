@@ -1,17 +1,47 @@
 import React from "react";
 
 
-export const pixelate = async (ctx, canvas, context, savedImage) => {
+export const pixelate = async (ctx, canvas, context) => {
   var size = context.controller.pixelSize * 0.01,
     w = canvas.width * size,
     h = canvas.height * size;
+
+  const image = new Image();
+  image.src = ctx.canvas.toDataURL();
+  image.height = canvas.height;
+  image.width = canvas.width;
+  ctx.drawImage(image, 0, 0, w, h);
+
   ctx.mozImageSmoothingEnabled = false;
   ctx.webkitImageSmoothingEnabled = false;
   ctx.imageSmoothingEnabled = false;
   ctx.filter = 'saturate(140%)';
-  ctx.drawImage(savedImage, 0, 0, w, h);
-  ctx.drawImage(canvas, 0, 0, w, h, 0, 0, canvas.width, canvas.height);
 
+  ctx.drawImage(canvas, 0, 0, w, h, 0, 0, canvas.width, canvas.height);
+  // let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+  // ctx.putImageData(imageData, 0, 0);
+};
+
+export const pixelate2 = async (ctx, canvas, context) => {
+  const image = new Image();
+  image.src = ctx.canvas.toDataURL();
+  image.height = canvas.height;
+  image.width = canvas.width;
+
+  let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+  let pixelArray = imageData.data;
+  let sample_size = context.controller.pixelSize;
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  for (let y = 0; y < canvas.height; y += sample_size) {
+    for (let x = 0; x < canvas.width; x += sample_size) {
+      let p = (x + (y*canvas.width)) * 4;
+      ctx.fillStyle = "rgba(" + pixelArray[p] + "," + pixelArray[p + 1] + "," + pixelArray[p + 2] + "," + pixelArray[p + 3] + ")";
+      ctx.fillRect(x, y, sample_size, sample_size);
+    }
+  }
+  ctx.filter = 'saturate(140%)';
+
+  // ctx.putImageData(imageData, 0, 0);
 };
 
 export const bitdepth = async (ctx, canvas, context) => {
