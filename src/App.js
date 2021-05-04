@@ -41,7 +41,7 @@ const App = () => {
 
     return (
         <MainContext.Provider value={contextObjects}>
-            <ContextDevTool context={MainContext} id="MainContext" displayName="MainContext"/>
+            <ContextDevTool data-testid="main" context={MainContext} id="MainContext" displayName="MainContext"/>
             <Router>
                 <Suspense fallback={<div>Loading...</div>}>
                     <Switch>

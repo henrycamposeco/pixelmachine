@@ -1,6 +1,3 @@
-import React from "react";
-
-
 export const pixelate = async (ctx, canvas, context) => {
   var size = context.controller.pixelSize * 0.01,
     w = canvas.width * size,

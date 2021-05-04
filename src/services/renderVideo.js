@@ -1,6 +1,5 @@
-import React from "react";
-import {chromakey, bitdepth, pixelate, pixelate2} from "./filters";
-import {loadAndPredict, mask} from "./bodyPix";
+import {chromakey, bitdepth, pixelate2} from "./filters";
+import {loadAndPredict} from "./bodyPix";
 
 let videoFrames = [];
 let savedImage = new Image();
@@ -39,9 +38,10 @@ const extractFramesFromVideo = async (mediaContent, context) => {
             let currentTime = 0;
             let duration = video.duration;
 
+
             while (currentTime < duration && videoFrames.length < 100) {
                 video.currentTime = currentTime;
-                await new Promise(r => seekResolve = r);
+                await new Promise(r => seekResolve = r);  // eslint-disable-line no-loop-func
                 ctxVideo.drawImage(video, 0, 0, w, h);
                 canvasVideo.toBlob(saveFrame, 'image/jpeg');
                 currentTime += interval;
