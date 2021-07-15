@@ -1,3 +1,6 @@
+# Introduction
+This project is intended to convert video to animated pixel art output using canvas element and also removes background when human figure is in the video using tensorFlow's body-pix model
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
